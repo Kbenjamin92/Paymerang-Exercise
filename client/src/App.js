@@ -1,8 +1,8 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navigation from './components/Navigation.js';
-import Header from './components/Header.js';
-import Main from './components/Main.js';
+import Navigation from './components/navigation.jsx';
+import Header from './components/header.jsx';
+import Main from './components/main.jsx';
 
 
 const App = () => {

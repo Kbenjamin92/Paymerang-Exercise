@@ -9,7 +9,7 @@ const Main = () => {
     const getData = async () => {
         try {
             const response = await axios.get('/api')
-            const results = await response.data.slice(14)
+            const results = await response.data.slice(11)
             setState(results)
             console.log(results)
         }
