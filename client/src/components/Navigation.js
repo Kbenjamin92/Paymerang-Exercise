@@ -5,7 +5,7 @@ const Navigation = () => {
     return (
         <div>   
             <Navbar bg="light">
-                <Navbar.Brand>Paymerang</Navbar.Brand>
+                <Navbar.Brand style={{paddingLeft: "20px", }}>Paymerang Assignment</Navbar.Brand>
             </Navbar>
         </div>
     )
