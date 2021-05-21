@@ -1,20 +1,27 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import Button from 'react-bootstrap/Button'
+import Pagination from '../components/pagination.jsx'
 
 const Main = () => {
     const [state, setState] = useState([])
+    const [pageSize, setPageSize] = useState(5)
 
     // Get json data from server
     const getData = async () => {
         try {
             const response = await axios.get('/api')
-            const results = await response.data.slice(11)
+            const results = await response.data.slice(1)
             setState(results)
             console.log(results)
         }
         catch (err) {console.log(err)}
     }
+
+    const handlePageChange = page => {
+        console.log(page)
+    }
+
 
     // Render json data from state
     const renderData =  state.length ? state.map((item, key) => {
@@ -68,10 +75,19 @@ const Main = () => {
     return (
         <div>
             <Button variant="success" onClick={() => getData()}>Data</Button>
+            <Pagination 
+                itemsCount={state.length} 
+                pageSize={pageSize} 
+                onPageChange={() => handlePageChange}
+            />
             <div style={{textAlign: "start"}}>
                 {renderData}
             </div>
-
+            <Pagination 
+                itemsCount={state.length} 
+                pageSize={pageSize} 
+                onPageChange={() => handlePageChange}
+            />
         </div>
     )
 }
