@@ -7,7 +7,6 @@ const port = 8000;
 app.use(express.json())
 app.use(morgan('dev'))
 
-
 app.get('/api', (req, res) => {
     res.status(200).send(paymentData)
 })

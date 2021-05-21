@@ -1,0 +1,17 @@
+.container {
+    /* margin: 50px 60% 50px 50px; */
+    text-align: start;
+    /* margin-right: 40%;
+    padding-right: 40%; */
+}
+.data {
+    margin-bottom: 30px;
+}
+.remittance-data {
+    margin-bottom: 60px;
+}
+.api-container {
+    display: flex;
+    justify-content: space-evenly
+
+}
