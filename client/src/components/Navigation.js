@@ -1,9 +1,12 @@
 import React from 'react'
+import Navbar from 'react-bootstrap/Navbar'
 
 const Navigation = () => {
     return (
         <div>   
-            Nav
+            <Navbar bg="light">
+                <Navbar.Brand>Paymerang</Navbar.Brand>
+            </Navbar>
         </div>
     )
 }
