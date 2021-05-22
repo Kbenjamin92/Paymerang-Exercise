@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import Button from 'react-bootstrap/Button'
 import Pagination from '../components/pagination.jsx'
+import { paginate } from '../utils/paginate'
 
 const Main = () => {
     const [state, setState] = useState([])
-    const [pageSize, setPageSize] = useState(5)
+    const [pageSize] = useState(1)
+    const [currentPage, setCurrentPage] = useState(1)
 
     // Get json data from server
     const getData = async () => {
@@ -18,12 +20,13 @@ const Main = () => {
     }
 
     const handlePageChange = page => {
-        console.log(page)
+        setCurrentPage(page)
     }
 
+    const paymentData = paginate(state, currentPage, pageSize)
 
     // Render json data from state
-    const renderData =  state.length ? state.map((item, key) => {
+    const renderData =  state.length ? paymentData.map((item, key) => {
         const renderRemittanceData = item.Remittance.map((data, key) => {
             return (
                 <div key={key}>
@@ -52,8 +55,7 @@ const Main = () => {
                         <li className="list-group-item"><strong>Attention:</strong> {item.Payee.Attention}</li>
                         <li className="list-group-item"><strong>Submission Date:</strong> {item.Payee.SubmissionDate}</li>
                     </ul>
-                    {/* style={{marginTop: "20px"}} */}
-                    <h2 >Payment</h2>
+                    <h2 style={{marginTop: "20px"}}>Payment</h2>
                     <ul  className="list-group list-group">
                         <li className="list-group-item"><strong>PAN:</strong> {item.Payment.PAN}</li>
                         <li className="list-group-item"><strong>CVV:</strong> {item.Payment.CVV}</li>
@@ -74,20 +76,18 @@ const Main = () => {
     )
     return (
         <div>
-            <Button variant="success" onClick={() => getData()}>Data</Button>
-            <Pagination 
-                itemsCount={state.length} 
-                pageSize={pageSize} 
-                onPageChange={handlePageChange}
-            />
+            <Button variant="primary" style={{marginBottom: "40px"}} onClick={() => getData()}>Data</Button>
             <div style={{textAlign: "start"}}>
                 {renderData}
             </div>
+            <div style={{marginLeft: "25%"}}>
             <Pagination 
                 itemsCount={state.length} 
-                pageSize={pageSize} 
+                pageSize={pageSize}
+                currentPage={currentPage} 
                 onPageChange={handlePageChange}
             />
+            </div>
         </div>
     )
 }
