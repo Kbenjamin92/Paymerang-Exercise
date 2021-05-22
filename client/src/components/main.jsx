@@ -13,7 +13,6 @@ const Main = () => {
             const response = await axios.get('/api')
             const results = await response.data
             setState(results)
-            console.log(results)
         }
         catch (err) {console.log(err)}
     }
@@ -53,7 +52,8 @@ const Main = () => {
                         <li className="list-group-item"><strong>Attention:</strong> {item.Payee.Attention}</li>
                         <li className="list-group-item"><strong>Submission Date:</strong> {item.Payee.SubmissionDate}</li>
                     </ul>
-                    <h2 style={{marginTop: "20px"}}>Payment</h2>
+                    {/* style={{marginTop: "20px"}} */}
+                    <h2 >Payment</h2>
                     <ul  className="list-group list-group">
                         <li className="list-group-item"><strong>PAN:</strong> {item.Payment.PAN}</li>
                         <li className="list-group-item"><strong>CVV:</strong> {item.Payment.CVV}</li>
@@ -78,7 +78,7 @@ const Main = () => {
             <Pagination 
                 itemsCount={state.length} 
                 pageSize={pageSize} 
-                onPageChange={() => handlePageChange}
+                onPageChange={handlePageChange}
             />
             <div style={{textAlign: "start"}}>
                 {renderData}
